@@ -12,6 +12,6 @@ module.exports = {
             }
         }
     }, {upsert : true}),
-    read : (input, ret) => member.find(username ? {$or : [{id : input}, {ktp : input}]} : null, (err, res) => ret(res)),
+    read : (input) => member.find(username ? {$or : [{id : input}, {ktp : input}]} : null),
     delete : input => member.findOneAndRemove({$or : [{id : input}, {ktp : input}]})
 };

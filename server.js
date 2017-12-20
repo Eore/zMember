@@ -13,6 +13,6 @@ mongoose.connect('mongodb://localhost/zMember', {useMongoClient : true})
     app.use(bodyParser.json());
     app.use('/admin', admin);
     let port = 8000;
-    http.listen(port, (err) => !err ? console.log('Server started') : console.log('Server Cannot be start : ' + err));
+    http.listen(port, (err) => !err ? console.log('Server berjalan di port ' + port) : console.log('Gagal menjalankan server : ' + err));
 })
 .catch((err) => console.log('Error :' + err));

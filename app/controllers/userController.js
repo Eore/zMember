@@ -13,7 +13,6 @@ module.exports = {
             role : data.role
         }, {upsert : true})
     ),
-    read : (username, ret) => user.find(username ? {username : username} : null, (err, res) => ret(res)),
-    delete : username => user.findOneAndRemove({username : username}),
-    verify : (encPass, password, ret) => encrypt.verify(encPass, password).then(res => ret(res))
+    read : (username) => user.find(username ? {username : username} : null),
+    delete : username => user.findOneAndRemove({username : username})
 };
