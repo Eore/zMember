@@ -13,6 +13,6 @@ module.exports = {
             role : data.role
         }, {upsert : true})
     ),
-    read : username => user.find(username ? {username : username} : null),
+    read : username => username ? user.findOne({username : username}) : user.find(),
     delete : username => user.findOneAndRemove({username : username}),
 };
