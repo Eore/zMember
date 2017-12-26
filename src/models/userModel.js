@@ -29,6 +29,7 @@ let User = new Schema({
     },
     role : {
         type : Schema.Types.Number,
+        default : 10,
         required : true
     }
 }, {collection : 'user'});

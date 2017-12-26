@@ -4,6 +4,7 @@ app         = express(),
 http        = require('http').createServer(app),
 mongoose    = require('mongoose'),
 bodyParser  = require('body-parser'),
+session     = require('express-session'),
 index       = require('./src/routes/index'),
 admin       = require('./src/routes/admin');
 
@@ -12,6 +13,7 @@ mongoose.connect('mongodb://localhost/membershipZainab', {useMongoClient : true}
 .then(() => {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended : true}));
+    app.use(session({resave : true, saveUninitialized : true, secret : 'miawmiawmiaw', cookie : {maxAge : (6 * 1000)}}))
     app.use('/', index);
     app.use('/admin', admin);
     let port = 8000;
