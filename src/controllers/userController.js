@@ -4,8 +4,8 @@ bcrypt      = require('bcrypt');
 
 module.exports = {
     set : (username, data) => 
-        bcrypt.genSalt((Math.random() * 100000))
-        .then(salt => {
+        bcrypt.genSalt((Math.random() * 15))
+        .then(salt => {     
             bcrypt.hash(data.password, salt)
             .then(encPass => {
                 user.findOneAndUpdate({username : username}, {
@@ -15,9 +15,9 @@ module.exports = {
                     email : data.email,
                     telepon : data.telepon,
                     role : data.role
-                }, {upsert : true});        
+                }, {upsert : true}).then();        
             })
         }),
-    read : username => username ? user.findOne({username : username}) : user.find(),
+    read : username => user.find({username : username}),
     delete : username => user.findOneAndRemove({username : username}),
 };

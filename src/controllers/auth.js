@@ -4,7 +4,7 @@ bcrypt  = require('bcrypt'),
 user    = require('./userController');
 
 var Salt;
-bcrypt.genSalt(Math.random() * 100000).then(salt => Salt = salt);
+bcrypt.genSalt(Math.random() * 20).then(salt => Salt = salt);
 
 module.exports = {
     login : (username, password) => {
