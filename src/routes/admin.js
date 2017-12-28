@@ -1,7 +1,6 @@
 var
 router      = require('express').Router(),
-user        = require('../controllers/userController'),
-valid       = require('validator');
+user        = require('../controllers/userController');
 
 var validator = (data) =>
     (/^[\w+]{4,12}$/.test(data.username) &&
@@ -14,15 +13,8 @@ router.route('/create')
 .post((req, res) => {
     if (validator(req.body)) {
         user.read(req.body.username).then(found => {
-            if (found === null) {
-                user.set(null, {
-                    username : req.body.username,
-                    password : req.body.password,
-                    nama : req.body.nama,
-                    email : req.body.email,
-                    telepon : req.body.telepon,
-                    role : req.body.role
-                }).then(() => res.json(req.body.username + ' berhasil ditambah'));
+            if (found.length === 0) {
+                user.set(null, req.body).then(() => res.json(req.body.username + ' berhasil ditambah'));
             } else {
                 res.json(req.body.username + ' sudah ada');
             }

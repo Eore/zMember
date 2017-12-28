@@ -10,10 +10,10 @@ module.exports = {
     login : (username, password) => {
         return new Promise((resolve, rej) => {
             user.read(username).then(res => {
-                res !== null ?
-                    bcrypt.compare(password, res.password)
+                res !== 0 ?
+                    bcrypt.compare(password, res[0].password)
                     .then(valid => valid ? 
-                        resolve(jwt.sign({id : res._id, role : res.role}, Salt, {expiresIn : '5m'}))
+                        resolve(jwt.sign({id : res[0]._id, role : res[0].role}, Salt, {expiresIn : '5m'}))
                         : rej('Username password salah')
                     ).catch(err => console.log(err))
                 : rej(username + ' tidak ada')

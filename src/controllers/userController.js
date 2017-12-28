@@ -18,6 +18,6 @@ module.exports = {
                 }, {upsert : true}).then();        
             })
         }),
-    read : username => user.find({username : username}),
+    read : username => user.find({username : new RegExp(username, 'i')}),
     delete : username => user.findOneAndRemove({username : username}),
 };

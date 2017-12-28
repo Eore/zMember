@@ -3,13 +3,17 @@ mongoose    = require('mongoose'),
 Schema      = mongoose.Schema;
 
 let Member = new Schema({
-    id : {
+    uid : {
         type : Schema.Types.String,
         default : Date.now(),
         required : true,
         index : true
     },
     ktp : {
+        type : Schema.Types.String,
+        required : true
+    },
+    nama : {
         type : Schema.Types.String,
         required : true
     },
