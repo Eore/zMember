@@ -3,15 +3,18 @@ member      = require('../models/memberModel')
 
 module.exports = {
     medicalRecord :{
-        new : (input, data) => 
-            member.update({ktp : input}, {
-                $push : {
-                    nomorRekam : {
-                        perusahaan : data.perusahaan,
-                        nomor : data.nomor
+        new : (input, data) => {
+            if (data.perusahaan !== undefined && data.nomor !== undefined) {
+                member.update({ktp : input}, {
+                    $push : {
+                        nomorRekam : {
+                            perusahaan : data.perusahaan,
+                            nomor : data.nomor
+                        }
                     }
-                }
-            }).then(),
+                }).then()
+            }
+        },
         edit : (input, data) =>
             member.findOneAndUpdate({'nomorRekam._id' : input}, {
                 $set : {

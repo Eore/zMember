@@ -9,9 +9,9 @@ router.route('/add')
         if (found.length === 0) {
             member.bio.set(null, req.body);
             member.medicalRecord.new(req.body.ktp, req.body);
-            res.json(req.body.nama + ' telah di tambah')
+            res.json(req.body.nama + ' telah di tambah');
         } else {
-            res.json(req.body.nama + ' sudah ada')
+            res.json(req.body.nama + ' sudah ada');
         }
     })
 })
@@ -27,6 +27,16 @@ router.route('/update')
 router.route('/read')
 .post((req, res) => {
     member.bio.read(req.body.input).then(found => res.json(found))
+})
+
+router.route('/medicalrecord/:case')
+.post((req, res) => {
+    switch (req.params.case) {
+        case 'add' : member.medicalRecord.new(req.body.input, req.body).then(() => res.json('Sukses')); break;
+        case 'edit' : member.medicalRecord.edit(req.body.input, req.body).then(() => res.json('Sukses')); break;
+        case 'delete' : member.medicalRecord.delete(req.body.input, req.body).then(() => res.json('Sukses')); break;
+        default : res.json('404');
+    }
 })
 
 module.exports = router;
