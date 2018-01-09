@@ -5,12 +5,12 @@ auth        = require('../controllers/auth');
 
 router.route('/login')
 .post((req, res) => {
-    req.body.username !== null ? auth.login(req.body.username, req.body.password)
+    req.body.username !== undefined ? auth.login(req.body.username, req.body.password)
     .then(valid => {
         req.session.token = valid;
         res.json(valid);
     })
-    .catch(err => res.json(err)) : next();
+    .catch(err => res.json(err)) : res.json('Input Username dan Password');
 })
 
 var pas;
