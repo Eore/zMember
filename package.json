@@ -11,13 +11,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^1.0.3",
-    "body-parser": "^1.18.2",
-    "express": "^4.16.2",
-    "express-session": "^1.15.6",
-    "jsonwebtoken": "^8.1.0",
-    "mongoose": "^4.13.7",
-    "pdfkit": "^0.8.3",
-    "qr-image": "^3.2.0"
+    "bcrypt": "lastest",
+    "body-parser": "lastest",
+    "express": "latest",
+    "express-session": "latest",
+    "jsonwebtoken": "latest",
+    "mongoose": "latest",
+    "pdfkit": "latest",
+    "qr-image": "latest"
   }
 }
